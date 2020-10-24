@@ -8,6 +8,7 @@ class InvestorRepo
 {
     public function paginate()
     {
+
         CC::inConf()
             ->registered()
             ->whereHas('clients', function ($clients) {

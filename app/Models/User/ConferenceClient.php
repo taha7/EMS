@@ -2,12 +2,16 @@
 
 namespace App\Models\User;
 
-use App\Models\Scopes\General\InConf;
+use App\Models\Traits\Relations\ConferenceClientRelations;
+use App\Models\Traits\Scopes\ConferenceClient\Status;
+use App\Models\Traits\Scopes\General\InConf;
 use Illuminate\Database\Eloquent\Model;
 
 class ConferenceClient extends Model
 {
-    use InConf;
+    use InConf, Status, ConferenceClientRelations;
+
+    const REGISTERED = 2;
 
     /**
      * The attributes that are mass assignable.

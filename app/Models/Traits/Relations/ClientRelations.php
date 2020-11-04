@@ -6,6 +6,7 @@ use App\Models\Lookups\Company;
 use App\Models\Lookups\Country;
 use App\Models\Lookups\Signatory;
 use App\Models\Lookups\Title;
+use App\Models\User\ClientPreference;
 use App\Models\User\ClientType;
 use App\Models\User\ConferenceClient;
 
@@ -27,7 +28,7 @@ trait ClientRelations
 
     public function clientPreferences()
     {
-        return $this->hasMany(ClientPreferences::class);
+        return $this->hasMany(ClientPreference::class);
     }
 
     public function country()

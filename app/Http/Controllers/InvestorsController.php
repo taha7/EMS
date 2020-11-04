@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Eloquent\InvestorRepo;
+use App\Services\InvestorsServices;
 use Illuminate\Http\Request;
 
-class InvestorController extends Controller
+class InvestorsController extends Controller
 {
     /**
      *
@@ -12,16 +14,22 @@ class InvestorController extends Controller
      */
     private $request;
 
+    private $service;
+
     /**
      * @param Request $request
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, InvestorsServices $service)
     {
         $this->request = $request;
+        $this->service = $service;
     }
 
-    public function list()
+    public function getAll()
     {
+
+        return $this->service->getAll();
+
         // $conf = $this->auth()->conference;
 
         // $date_lists = $this->auth()->conference->conferenceDates()->toArray();

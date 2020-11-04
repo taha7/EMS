@@ -3,11 +3,12 @@
 namespace App\Models\User;
 
 use App\Models\Traits\Relations\ClientRelations;
+use App\Models\Traits\Scopes\Client\Type;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    use ClientRelations;
+    use ClientRelations, Type;
     /**
      * The attributes that are mass assignable.
      *

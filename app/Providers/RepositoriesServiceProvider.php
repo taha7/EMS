@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\InvestorsRepoContract;
-use App\Repositories\Eloquent\InvestorsRepo;
+use App\Repositories\Contracts\ClientRepoContract;
+use App\Repositories\Eloquent\ClientRepo\ClientRepo;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
@@ -15,7 +15,7 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->bind(InvestorsRepoContract::class, InvestorsRepo::class);
+        app()->bind(ClientRepoContract::class, ClientRepo::class);
     }
 
     /**

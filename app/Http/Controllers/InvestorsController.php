@@ -28,7 +28,9 @@ class InvestorsController extends Controller
     public function getAll()
     {
 
-        return $this->service->getAll();
+        $investors = $this->service->getAll();
+
+        return view('investors.index', compact(array('investors')));
 
         // $conf = $this->auth()->conference;
 

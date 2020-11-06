@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\InvestorsRepoContract;
+use App\Repositories\Contracts\ClientRepoContract;
 
 class InvestorsServices
 {
     private $repo;
 
-    public function __construct(InvestorsRepoContract $repo)
+    public function __construct(ClientRepoContract $repo)
     {
         $this->repo = $repo;
     }
 
     public function getAll()
     {
-        return $this->repo->queryAll();
+        return $this->repo->list();
     }
 }

@@ -43,25 +43,4 @@ class ClientRepo extends EloquentRepoAbstract implements ClientRepoContract
             new EagerLoadAppend('primarySignatory'),
         ))->get();
     }
-
-    // public function paginate()
-    // {
-    //     return $this->model
-    //         ->investors()
-    //         ->whereHas('conferenceClients', function ($q) {
-    //             $q->inConf()->registered();
-    //         })
-    //         ->with(
-    //             [
-    //                 'clientPreferences' => function ($preferences) {
-    //                     $preferences->inConf()->withCompany(request('company_id'));
-    //                 },
-    //                 'company',
-    //                 'clientType',
-    //                 'company',
-    //                 'country',
-    //                 'title',
-    //                 'primarySignatory'
-    //             ]
-    //         );
 }

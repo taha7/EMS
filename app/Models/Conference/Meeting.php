@@ -2,10 +2,13 @@
 
 namespace App\Models\Conference;
 
+use App\Models\Traits\Relations\MeetingRelations;
 use Illuminate\Database\Eloquent\Model;
 
 class Meeting extends Model
 {
+    use MeetingRelations;
+
     /**
      * The attributes that are mass assignable.
      *

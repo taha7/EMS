@@ -21,9 +21,9 @@ class EagerLoadAppend implements AppendsContract
     public function apply($model)
     {
         return $model->with([
-            $this->relation => function ($preferences) {
+            $this->relation => function ($relative) {
                 foreach ($this->appends as $append) {
-                    $append->apply($preferences);
+                    $append->apply($relative);
                 }
             }
         ]);

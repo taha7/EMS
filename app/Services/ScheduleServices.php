@@ -2,19 +2,28 @@
 
 namespace App\Services;
 
-use App\Repositories\Eloquent\MeetingRepo\MeetingRepo;
+use App\Http\Resources\WepApi\ScheduleSlotsResource;
+use App\Repositories\Eloquent\AgendaSlotRepo\AgendaSlotRepo;
+use App\Repositories\Eloquent\CompanyRepo\CompanyRepo;
+use App\Repositories\Eloquent\ConferenceRepo\ConferenceRepo;
 
 class ScheduleServices
 {
-    private $repo;
+    private $agendaSlotRepo, $conferenceRepo, $companyRepo;
 
-    public function __construct(MeetingRepo $repo)
+    public function __construct(AgendaSlotRepo $agendaSlotRepo, ConferenceRepo $conferenceRepo, CompanyRepo $companyRepo)
     {
-        $this->repo = $repo;
+        $this->agendaSlotRepo = $agendaSlotRepo;
+        $this->conferenceRepo = $conferenceRepo;
+        $this->companyRepo = $companyRepo;
     }
 
     public function genereateSchedule()
     {
-        return $this->repo->generateSchedule();
+        return [
+            'dates' => $this->conferenceRepo->conferenceDates($this->conferenceRepo->find(request()->conference_id ?? 37)),
+            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(100)->get(),
+            'scheduleAgendaSlots' =>  ScheduleSlotsResource::collection($this->agendaSlotRepo->listWithMeetings()->groupBy(['date']))
+        ];
     }
 }

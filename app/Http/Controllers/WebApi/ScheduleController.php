@@ -21,9 +21,9 @@ class ScheduleController extends Controller
     public function generateSchedule()
     {
         if ($this->request->wantsJson()) {
-            // return ScheduleResource::collection(
-                return $this->service->genereateSchedule()->groupBy(['agendaSlot.date', 'company.name']);
-            // );
+            return response()->json(
+                $this->service->genereateSchedule()
+            );
         }
 
         return view('schedule.index');

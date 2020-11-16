@@ -6,8 +6,7 @@ const mapDispatchToProps = dispatch => {
             axios.get("/schedule").then(({ data }) => {
                 dispatch({ type: SET_SCHEDULE_DATA, payload: data });
             });
-        },
-        decreaseCounter: () => dispatch({ type: "DECREMENT" })
+        }
     };
 };
 

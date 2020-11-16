@@ -16,7 +16,7 @@ abstract class EloquentRepoAbstract implements AppRepoContract
     }
 
     /**
-     * Will use same naming convention of model
+     * Will use methods from model direct
      */
     public function __call($name, $arguments)
     {

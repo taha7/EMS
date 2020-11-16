@@ -4,8 +4,9 @@ namespace App\Http\Resources\WepApi;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
-class ScheduleResource extends JsonResource
+class ScheduleSlotsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +16,13 @@ class ScheduleResource extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->resource instanceof Collection) {
+            return ScheduleSlotsResource::collection($this->resource);
+        }
+
         return array_merge(
             [
-                'meetings' => $this->meetings->groupBy('company.name')
+                'meetings' => $this->meetings->groupBy(['company_id', 'conferenceClient.client.company.name'])
             ],
             Arr::except(parent::toArray($request), ['meetings'])
         );

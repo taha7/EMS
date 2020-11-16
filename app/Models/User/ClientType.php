@@ -11,6 +11,7 @@ class ClientType extends Model
     use Type;
 
     const INVESTORS = 1;
+    const PRESENTERS = 2;
 
     /**
      * The attributes that are mass assignable.

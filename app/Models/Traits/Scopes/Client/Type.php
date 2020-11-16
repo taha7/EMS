@@ -10,4 +10,11 @@ trait Type
             $q->investors();
         });
     }
+
+    public function scopePresenters($query)
+    {
+        return $query->whereHas('clientType', function ($q) {
+            $q->presenters();
+        });
+    }
 }

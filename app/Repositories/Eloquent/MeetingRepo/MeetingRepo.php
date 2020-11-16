@@ -14,7 +14,7 @@ class MeetingRepo extends EloquentRepoAbstract implements MeetingRepoContract
         return Meeting::class;
     }
 
-    public function generateSchedule()
+    public function scheduleMeetings()
     {
         return $this->appends([
             new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id']),
@@ -22,19 +22,44 @@ class MeetingRepo extends EloquentRepoAbstract implements MeetingRepoContract
                 new InConfAppend()
             ]),
             new EagerLoadAppend('agendaSlot', [
-                new SelectAppend(['id', 'date', 'start_time', 'end_time', 'type', 'conference_id'])
+                new SelectAppend(['id', 'date', 'start_time', 'end_time'])
             ]),
             new EagerLoadAppend('company', [
                 new SelectAppend(['id', 'name'])
+            ]),
+            new EagerLoadAppend('conferenceClient', [
+                new SelectAppend(['id', 'client_id']),
+                new EagerLoadAppend('client', [
+                    new SelectAppend(['id', 'company_id', 'first_name', 'family_name']),
+                    new EagerLoadAppend('company', [
+                        new SelectAppend(['id', 'name'])
+                    ])
+                ])
             ])
-        ])->get();
-        // new InConfAppend(),
-        //     new EagerLoadAppend('meetings', [
-        //         new EagerLoadAppend('company', [
-        //             new SelectAppend(['id', 'name'])
-        //         ]),
-        //         new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id'])
-        //     ]),
-        //     new SelectAppend(['id', 'date', 'start_time', 'end_time', 'type', 'conference_id'])
+        ]);
     }
+
+    // public function generateSchedule()
+    // {
+    //     return $this->appends([
+    //         new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id']),
+    //         new RelationAppend('agendaSlot', [
+    //             new InConfAppend()
+    //         ]),
+    //         new EagerLoadAppend('agendaSlot', [
+    //             new SelectAppend(['id', 'date', 'start_time', 'end_time', 'type', 'conference_id'])
+    //         ]),
+    //         new EagerLoadAppend('company', [
+    //             new SelectAppend(['id', 'name'])
+    //         ])
+    //     ])->get();
+    //     // new InConfAppend(),
+    //     //     new EagerLoadAppend('meetings', [
+    //     //         new EagerLoadAppend('company', [
+    //     //             new SelectAppend(['id', 'name'])
+    //     //         ]),
+    //     //         new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id'])
+    //     //     ]),
+    //     //     new SelectAppend(['id', 'date', 'start_time', 'end_time', 'type', 'conference_id'])
+    // }
 }

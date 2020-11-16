@@ -1,0 +1,57 @@
+.schedule-body-container {
+    overflow: auto;
+    margin-top: 10px;
+    height: calc(100% - 54.67px);
+    border-radius: 5px;
+}
+
+.schedule-body-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: #bababa47;
+    height: 6px;
+}
+.schedule-body-container::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+    border-radius: 4px;
+}
+
+.companies-title {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #f3f4f9;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    box-shadow: -1px -1px 1px 1px black;
+}
+
+.dates-title {
+    position: sticky;
+    top: 0;
+    background: #f3f4f9;
+    box-shadow: 1px -1px 1px 1px black;
+    font-size: 1.2rem;
+}
+
+.companies-box {
+    position: sticky;
+    left: 0;
+    background: #f3f4f9;
+    box-shadow: 0px 0px 1px 0px;
+}
+.company-name {
+    width: 200px;
+    background: white;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bolder;
+}

@@ -8,4 +8,9 @@ trait Type
     {
         return $query->where('type', self::INVESTORS);
     }
+
+    public function scopePresenters($query)
+    {
+        return $query->where('type', self::PRESENTERS);
+    }
 }

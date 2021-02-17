@@ -15,6 +15,10 @@ class ConferenceRepo extends EloquentRepoAbstract implements ConferenceRepoContr
         return Conference::class;
     }
 
+    public function basicQueryAppends() {
+        return [];
+    }
+
     /**
      * list conference dates
      * @param Conference $conf

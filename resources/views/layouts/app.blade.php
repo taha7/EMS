@@ -22,8 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app" style="height: 100vh;">
+<body style="background: #ECECF2">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -75,7 +75,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="height: calc(100vh - 54.67px);">
+        <main class="app-body py-4">
             @yield('content')
         </main>
     </div>

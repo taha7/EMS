@@ -1,18 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "../store/schedule/store";
-import ScheduleBody from "../components/app/schedule/schedule-company/schedule-body.component";
+import ScheduleBody from "../components/app/schedule/schedule-body.component";
 
 const Schedule = () => (
     <div className="container-fluid" style={{ height: "100%" }}>
-        <div className="row">
-            <div className="col-md-12">
-                <div className="card">
-                    <div className="card-header">Example Component</div>
-                </div>
-            </div>
-        </div>
         <ScheduleBody />
     </div>
 );

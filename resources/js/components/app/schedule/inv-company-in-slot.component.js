@@ -29,7 +29,7 @@ const InvCompanyInSlot = memo(({ invCompName, meetingsWithPresComp }) => {
             {invCompState.isInvsDisplayed ? (
                 <div className="invs-in-company-list">
                     {meetingsWithPresComp.map(m => (
-                        <span
+                        <div
                             key={
                                 m.id +
                                 m.agenda_slot_id +
@@ -37,9 +37,9 @@ const InvCompanyInSlot = memo(({ invCompName, meetingsWithPresComp }) => {
                                 m.client_id
                             }
                         >
-                            <i class="fas fa-clipboard"></i>{" "}
+                            <i className="fas fa-clipboard"></i>{" "}
                             {m.conference_client.client.first_name}
-                        </span>
+                        </div>
                     ))}
                 </div>
             ) : null}

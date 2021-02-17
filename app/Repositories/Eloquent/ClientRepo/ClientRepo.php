@@ -24,7 +24,11 @@ class ClientRepo extends EloquentRepoAbstract implements ClientRepoContract
         return Client::class;
     }
 
-    public function list()
+    public function basicQueryAppends() {
+        return [];
+    }
+
+    public function listInvestors()
     {
         return $this->appends(array(
             new InvestorsAppend(),

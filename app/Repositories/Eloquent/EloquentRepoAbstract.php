@@ -9,6 +9,8 @@ abstract class EloquentRepoAbstract implements AppRepoContract
 {
     protected $model, $request;
 
+    const SELECT_FROM_BASIC_QUERY = true;
+
     public function __construct()
     {
         $this->model = $this->resolveModel();
@@ -30,10 +32,35 @@ abstract class EloquentRepoAbstract implements AppRepoContract
     }
 
     /**
+     * Select from the initial query appends or
+     * update with the given append
+     *
+     * @param array<string,bool|AppendsContract> $selections
+     * @return AppendsContract[]
+     */
+    public function appendsSelections($selections)
+    {
+        $selectedAppends = [];
+        $initialAppends = $this->basicQueryAppends();
+
+        foreach ($selections as $selectionName => $selectedAppend) {
+            if ($selectedAppend === self::SELECT_FROM_BASIC_QUERY) {
+                // You will select the basic and initial append
+                $selectedAppends[] = $initialAppends[$selectionName];
+            } else {
+                // Then the user of this method specified another append
+                $selectedAppends[] = $selectedAppend;
+            }
+        }
+
+        return $selectedAppends;
+    }
+
+    /**
      * add appends to query
      *
      * @param AppendsContract[] $appends
-     * @return void
+     * @return this
      */
     public function appends(array $appends = [])
     {
@@ -49,4 +76,6 @@ abstract class EloquentRepoAbstract implements AppRepoContract
      * @return void
      */
     protected abstract function model(): string;
+
+    public abstract function basicQueryAppends();
 }

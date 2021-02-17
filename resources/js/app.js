@@ -13,3 +13,4 @@ require('./bootstrap');
  */
 
 require('./pages/schedule.page');
+require('./pages/reports/company-schedule-with-investor-contacts.page');

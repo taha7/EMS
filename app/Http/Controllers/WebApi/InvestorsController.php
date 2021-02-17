@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\WebApi;
 
-use App\Repositories\Eloquent\InvestorRepo;
+use App\Http\Controllers\Controller;
 use App\Services\InvestorsServices;
 use Illuminate\Http\Request;
 
@@ -25,12 +25,14 @@ class InvestorsController extends Controller
         $this->service = $service;
     }
 
-    public function getAll()
+    public function index()
     {
 
         $investors = $this->service->getAll();
 
-        return view('investors.index', compact(array('investors')));
+        return response()->json($investors);
+
+        // return view('investors.index', compact(array('investors')));
 
         // $conf = $this->auth()->conference;
 

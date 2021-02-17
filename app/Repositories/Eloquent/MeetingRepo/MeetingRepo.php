@@ -14,20 +14,20 @@ class MeetingRepo extends EloquentRepoAbstract implements MeetingRepoContract
         return Meeting::class;
     }
 
-    public function scheduleMeetings()
+    public function basicQueryAppends()
     {
-        return $this->appends([
-            new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id']),
-            new RelationAppend('agendaSlot', [
+        return [
+            'select' => new SelectAppend(['id', 'agenda_slot_id', 'company_id', 'client_id']),
+            'agendaSlotRelation' => new RelationAppend('agendaSlot', [
                 new InConfAppend()
             ]),
-            new EagerLoadAppend('agendaSlot', [
-                new SelectAppend(['id', 'date', 'start_time', 'end_time'])
+            'agendaSlotLoad' => new EagerLoadAppend('agendaSlot', [
+                new SelectAppend(['id', 'date', 'start_time', 'end_time', 'conference_id'])
             ]),
-            new EagerLoadAppend('company', [
+            'companyLoad' => new EagerLoadAppend('company', [
                 new SelectAppend(['id', 'name'])
             ]),
-            new EagerLoadAppend('conferenceClient', [
+            'conferenceClientLoad' => new EagerLoadAppend('conferenceClient', [
                 new SelectAppend(['id', 'client_id']),
                 new EagerLoadAppend('client', [
                     new SelectAppend(['id', 'company_id', 'first_name', 'family_name']),
@@ -36,7 +36,38 @@ class MeetingRepo extends EloquentRepoAbstract implements MeetingRepoContract
                     ])
                 ])
             ])
+        ];
+    }
+
+
+    public function companyScheduleWithInvestorContactsData()
+    {
+        $appends = $this->appendsSelections([
+            'select' => self::SELECT_FROM_BASIC_QUERY,
+            'agendaSlotRelation' => self::SELECT_FROM_BASIC_QUERY,
+            'agendaSlotLoad' => self::SELECT_FROM_BASIC_QUERY,
+            'companyLoad' => self::SELECT_FROM_BASIC_QUERY,
+            'conferenceClientLoad' => new EagerLoadAppend('conferenceClient', [
+                new SelectAppend(['id', 'client_id']),
+                new EagerLoadAppend('client', [
+                    new SelectAppend(['id', 'company_id', 'first_name', 'family_name']),
+                    // here is the diff with the basic query
+                    new EagerLoadAppend('country', [
+                        new SelectAppend(['id', 'name'])
+                    ]),
+                    new EagerLoadAppend('company', [
+                        new SelectAppend(['id', 'name'])
+                    ])
+                ])
+            ])
         ]);
+
+        return $this->appends($appends)->get();
+    }
+
+    public function scheduleMeetings()
+    {
+        return $this->appends($this->basicQueryAppends());
     }
 
     // public function generateSchedule()

@@ -5,6 +5,14 @@ const initialState = {
         dates: [],
         companies: [],
         scheduleAgendaSlots: {}
+    },
+    datesWidth: {},
+    investorsModal: {
+        startingData: {
+            slot: {},
+            company: {}
+        },
+        investors: []
     }
 };
 

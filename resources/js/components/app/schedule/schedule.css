@@ -1,0 +1,121 @@
+.app-body {
+    height: calc(100vh - 55px);
+}
+
+.schedule-body-container {
+    overflow: auto;
+    margin-top: 10px;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.schedule-body-container::-webkit-scrollbar {
+    width: 0px;
+    /* background-color: #bababa47; */
+    height: 0px;
+}
+.schedule-body-container::-webkit-scrollbar-thumb {
+    /* background-color: #b0b0b0;
+    border-radius: 4px; */
+}
+
+.companies-title {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #3699ff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: #ffffff;
+    box-shadow: 0px 0px 2px 2px #2d90f6;
+}
+
+.dates-title {
+    color: #575d6e;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: #f7f8fc;
+    font-size: 1rem;
+    box-shadow: 0px 0px 5px -1px #afafaf;
+}
+
+.companies-box {
+    position: sticky;
+    left: 0;
+    box-shadow: 0px 0px 2px 2px #2d90f6;
+    background: #3699ff;
+}
+.company-name {
+    width: 230px;
+    background: #80beff40;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bolder;
+    color: white;
+    margin-top: 4px;
+}
+
+/*  */
+.table-data {
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #d1d1d1;
+    height: 0;
+}
+.slots {
+    height: 100%;
+}
+.timeSlot {
+    width: 280px;
+    border-radius: 5px;
+    background: #e8f0fd;
+    margin-right: 10px;
+    border: 2px solid #dbe4f2;
+    height: 100%;
+}
+.slotHeader {
+    border-bottom: 2px solid rgb(61 128 223);
+    align-items: center;
+    color: #4b8ae2;
+    font-weight: bolder;
+}
+.startTime {
+    padding: 7px;
+}
+.endTime {
+    padding: 7px;
+}
+
+.slot-body {
+    padding: 10px 15px;
+    flex: 1;
+}
+
+.inv-company {
+    font-weight: bold;
+    color: #345483;
+    font-size: 0.86rem;
+}
+
+.invs-in-company-list {
+    color: cornflowerblue;
+    margin-left: 15px;
+}
+.add-inv {
+}
+
+/* Investors Modal */
+#investorsModal .modal-body {
+    max-height: 580px;
+    font-size: 0.8rem;
+    overflow: auto;
+}
+.filter-column {
+
+}

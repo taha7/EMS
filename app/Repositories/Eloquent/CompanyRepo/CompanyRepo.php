@@ -6,13 +6,17 @@ use App\Models\Lookups\Company;
 use App\Repositories\Contracts\CompanyRepoContract;
 use App\Repositories\Eloquent\ClientRepo\Appends\PresentersAppend;
 use App\Repositories\Eloquent\EloquentRepoAbstract;
-use App\Repositories\Eloquent\GlobalAppends\{EagerLoadAppend, InConfAppend, RelationAppend, SelectAppend};
+use App\Repositories\Eloquent\GlobalAppends\{EagerLoadAppend, InConfAppend, OrderByAppend, RelationAppend, SelectAppend};
 
 class CompanyRepo extends EloquentRepoAbstract implements CompanyRepoContract
 {
     public function model(): string
     {
         return Company::class;
+    }
+
+    public function basicQueryAppends() {
+        return [];
     }
 
     public function registeredPresentingCompanies()
@@ -26,7 +30,8 @@ class CompanyRepo extends EloquentRepoAbstract implements CompanyRepoContract
             ]),
             new EagerLoadAppend('clients', [
                 new SelectAppend(['id', 'first_name', 'family_name'])
-            ])
+            ]),
+            new OrderByAppend('name')
         ]);
     }
 }

@@ -4,7 +4,31 @@ const mutations = {
     [SET_SCHEDULE_DATA]: (state, payload = null) => ({
         ...state,
         scheduleData: payload
-    })
+    }),
+    SET_DATE_WIDTH: (state, { date, newWidth }) => {
+        return {
+            ...state,
+            datesWidth: { ...state.datesWidth, [date]: newWidth }
+        };
+    },
+    SET_INVESTORS_MODAL_STARTING_DATA: (state, payload) => {
+        return {
+            ...state,
+            investorsModal: {
+                ...state.investorsModal,
+                startingData: { ...state.startingData, ...payload }
+            }
+        };
+    },
+    SET_INVESTORS_IN_INVESTORS_MODAL: (state, payload) => {
+        return {
+            ...state,
+            investorsModal: {
+                ...state.investorsModal,
+                investors: payload
+            }
+        };
+    }
 };
 
 export default mutations;

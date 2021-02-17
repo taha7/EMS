@@ -15,6 +15,10 @@ class AgendaSlotRepo extends EloquentRepoAbstract implements AgendaSlotRepoContr
         return AgendaSlot::class;
     }
 
+    public function basicQueryAppends() {
+        return [];
+    }
+
     public function listWithMeetings()
     {
         return $this->appends([

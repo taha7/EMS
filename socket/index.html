@@ -7,9 +7,11 @@
     <body>
         <div>Hello from here</div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.min.js" integrity="sha512-fANg+hKlIqBdTzgYBT8eFIlZgKYTLij0S7Afvda/rw/Rm33I9+74HSdR1Urz2zGgCSZiQweMin46+l1obnoLWQ==" crossorigin="anonymous"></script>
         <script>
             var socket = io();
+            socket.emit('specific.event', {key: 'Value is here'});
             // socket.emit('specific.event', 'the message');
             // socket.on('specific.event', (message) => {
             //     console.log(message);

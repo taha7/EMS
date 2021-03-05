@@ -1,7 +1,13 @@
 <?php
 
+use App\Events\SlotUpdatedEvent;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/', function () {
+    event(new SlotUpdatedEvent('Hello Slot'));
+    return [];
+});
 
 Route::get('/investors', 'InvestorsController@getAll');
 

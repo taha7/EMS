@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent\CompanyRepo;
 use App\Models\Lookups\Company;
 use App\Repositories\Contracts\CompanyRepoContract;
 use App\Repositories\Eloquent\ClientRepo\Appends\PresentersAppend;
+use App\Repositories\Eloquent\ConferenceClientRepo\Appends\RegisteredAppend;
 use App\Repositories\Eloquent\EloquentRepoAbstract;
 use App\Repositories\Eloquent\GlobalAppends\{EagerLoadAppend, InConfAppend, OrderByAppend, RelationAppend, SelectAppend};
 
@@ -25,7 +26,8 @@ class CompanyRepo extends EloquentRepoAbstract implements CompanyRepoContract
             new RelationAppend('clients', [
                 new PresentersAppend(),
                 new RelationAppend('conferenceClients', [
-                    new InConfAppend()
+                    new InConfAppend(),
+                    new RegisteredAppend()
                 ])
             ]),
             new EagerLoadAppend('clients', [

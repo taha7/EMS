@@ -6,10 +6,11 @@ use App\Models\Traits\Relations\AgendaSlotRelations;
 use App\Models\Traits\Scopes\AgendaSlot\SlotType;
 use App\Models\Traits\Scopes\General\InConf;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AgendaSlot extends Model
 {
-    use InConf, SlotType ,AgendaSlotRelations;
+    use InConf, SlotType, AgendaSlotRelations, SoftDeletes;
 
     const PUBLIC_SLOT = 1;
     const PRIVATE_SLOT = 2;

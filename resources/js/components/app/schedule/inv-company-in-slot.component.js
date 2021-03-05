@@ -38,7 +38,7 @@ const InvCompanyInSlot = memo(({ invCompName, meetingsWithPresComp }) => {
                             }
                         >
                             <i className="fas fa-clipboard"></i>{" "}
-                            {m.conference_client.client.first_name}
+                            {m.conference_client.client.full_titled_name}
                         </div>
                     ))}
                 </div>

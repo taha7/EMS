@@ -22,8 +22,8 @@ class ScheduleServices
     {
         return [
             'dates' => $this->conferenceRepo->conferenceDates($this->conferenceRepo->find(request()->conference_id ?? 37)),
-            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(5)->get(),
-            'scheduleAgendaSlots' =>  ScheduleSlotsResource::collection($this->agendaSlotRepo->listWithMeetings()->groupBy(['date']))
+            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(50)->get(),
+            'scheduleAgendaSlots' =>  ScheduleSlotsResource::collection($this->agendaSlotRepo->listWithMeetings())
         ];
     }
 }

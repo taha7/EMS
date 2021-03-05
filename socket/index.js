@@ -16,11 +16,13 @@ app.get("/", (req, res) => {
 
 io.on("connection", socket => {
     console.log("A connection is made");
-    // socket.on("specific.event", message => {
-    //     io.emit("specifi.event");
-    // });
 
-    // socket.on('disconnect', () => {
-    //     io.emit('specific.event', 'User disconnected')
-    // })
+    socket.on("specific.event", data => {
+        console.log(data);
+        // io.emit("specifi.event");
+    });
+
+    socket.on('disconnect', () => {
+        io.emit('specific.event', 'User disconnected')
+    })
 });

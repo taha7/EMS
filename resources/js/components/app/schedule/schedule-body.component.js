@@ -16,10 +16,10 @@ const renderDates = (dates, datesWidth) => {
 };
 
 const renderCompanies = ({ companies, scheduleAgendaSlots }) => {
-    return companies.map(company => (
+    return companies.map((company, $index) => (
         <tr key={company.id}>
             <td className="companies-box p-2">
-                <div className="company-name">{company.name}</div>
+                <div className="company-name">{company.name} {$index + 1}</div>
             </td>
             {Object.keys(scheduleAgendaSlots).map(date => (
                 <CompanySlotsInDate

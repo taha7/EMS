@@ -7,7 +7,7 @@ use App\Repositories\Eloquent\Appends\AppendsContract;
 
 abstract class EloquentRepoAbstract implements AppRepoContract
 {
-    protected $model, $request;
+    protected $model, $request, $allowFilters, $filters;
 
     const SELECT_FROM_BASIC_QUERY = true;
 
@@ -15,6 +15,8 @@ abstract class EloquentRepoAbstract implements AppRepoContract
     {
         $this->model = $this->resolveModel();
         $this->request = request();
+        $this->allowFilters = false;
+        $this->filters = [];
     }
 
     /**
@@ -71,6 +73,26 @@ abstract class EloquentRepoAbstract implements AppRepoContract
         return $this;
     }
 
+    public function appendFilters()
+    {
+        $filtersAppends = $this->filtersAppends();
+        foreach ($this->filters as $filter) {
+            if (request()->has($filter) && array_key_exists($filter, $filtersAppends)) {
+                $filtersAppends[$filter](request()->get($filter));
+            }
+        }
+    }
+
+    public function allowFilters()
+    {
+        $this->allowFilters = true;
+    }
+
+    public function filterWith(array $filters)
+    {
+        $this->filters = $filters;
+    }
+
     /**
      * Specifying which model will be the base for the repo
      * @return void
@@ -78,4 +100,8 @@ abstract class EloquentRepoAbstract implements AppRepoContract
     protected abstract function model(): string;
 
     public abstract function basicQueryAppends();
+
+    protected function filtersAppends() {
+        return [];
+    }
 }

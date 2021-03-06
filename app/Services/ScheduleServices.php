@@ -20,9 +20,15 @@ class ScheduleServices
 
     public function genereateSchedule()
     {
+        $companies = $this->companyRepo->registeredPresentingCompanies()->paginate(20);
+        request()->merge(['companies' => collect($companies->jsonSerialize()['data'])->pluck('id')->toArray()]);
+        
+        $this->agendaSlotRepo->allowFilters();
+        $this->agendaSlotRepo->filterWith(['companies']);
+        
         return [
             'dates' => $this->conferenceRepo->conferenceDates($this->conferenceRepo->find(request()->conference_id ?? 37)),
-            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(50)->get(),
+            'companiesPagination' => $companies,
             'scheduleAgendaSlots' =>  ScheduleSlotsResource::collection($this->agendaSlotRepo->listWithMeetings())
         ];
     }

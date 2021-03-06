@@ -1,9 +1,11 @@
 import mutations from "../mutations/schedule.mutations";
 
 const initialState = {
+    isLoading: false,
     scheduleData: {
         dates: [],
         companies: [],
+        companiesPagination: {},
         scheduleAgendaSlots: {}
     },
     datesWidth: {},

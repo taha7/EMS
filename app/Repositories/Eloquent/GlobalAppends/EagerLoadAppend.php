@@ -18,6 +18,11 @@ class EagerLoadAppend implements AppendsContract
         $this->relation = $relation;
     }
 
+    public function addAppend($append)
+    {
+        $this->appends[] = $append;
+    }
+
     public function apply($model)
     {
         return $model->with([

@@ -22,7 +22,7 @@ class ScheduleServices
     {
         return [
             'dates' => $this->conferenceRepo->conferenceDates($this->conferenceRepo->find(request()->conference_id ?? 37)),
-            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(50)->get(),
+            'companies' => $this->companyRepo->registeredPresentingCompanies()->take(171)->get(),
             'scheduleAgendaSlots' =>  ScheduleSlotsResource::collection($this->agendaSlotRepo->listWithMeetings())
         ];
     }

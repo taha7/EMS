@@ -10,7 +10,7 @@ const renderDates = (dates, datesWidth) => {
 
     return dates.map(date => (
         <th className="dates-title " key={date}>
-            {date} {datesWidth[date]}
+            {date}
         </th>
     ));
 };
@@ -19,7 +19,9 @@ const renderCompanies = ({ companies, scheduleAgendaSlots }) => {
     return companies.map((company, $index) => (
         <tr key={company.id}>
             <td className="companies-box p-2">
-                <div className="company-name">{company.name} {$index + 1}</div>
+                <div className="company-name">
+                    {company.name} {$index + 1}
+                </div>
             </td>
             {Object.keys(scheduleAgendaSlots).map(date => (
                 <CompanySlotsInDate
@@ -33,34 +35,27 @@ const renderCompanies = ({ companies, scheduleAgendaSlots }) => {
     ));
 };
 
-const ScheduleBody = ({
-    scheduleData: schedule,
-    loadScheduleData,
-    datesWidth
-}) => {
-    useEffect(() => {
-        loadScheduleData();
-    }, []);
-
+const ScheduleBody = ({ scheduleData: schedule, loadScheduleData }) => {
+    console.log('render ScheduleBody');
     return (
         <div className="schedule-body-container shadow-xl">
+            <button onClick={loadScheduleData}>Load Schedule Data</button>
             <table className="table table-borderless">
                 <thead>
                     <tr className="">
                         <th className="companies-title ">Companies</th>
-                        {renderDates(schedule.dates, datesWidth)}
+                        {renderDates(schedule.dates)}
                     </tr>
                 </thead>
                 <tbody>{renderCompanies(schedule)}</tbody>
             </table>
-            <InvestorsModal />
+            {/* <InvestorsModal /> */}
         </div>
     );
 };
 
 const mapStateToProps = ({ scheduleReducer }) => ({
-    scheduleData: scheduleReducer.scheduleData,
-    datesWidth: scheduleReducer.datesWidth
+    scheduleData: scheduleReducer
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleBody);

@@ -1,9 +1,11 @@
 import mutations from "../mutations/schedule.mutations";
 
 const initialState = {
-    dates: [],
-    companies: [],
-    scheduleAgendaSlots: {}
+    startingData: {
+        slot: {},
+        company: {}
+    },
+    investors: []
 };
 
 const reducer = (state = initialState, action) => {

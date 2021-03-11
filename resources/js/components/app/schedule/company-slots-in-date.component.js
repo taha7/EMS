@@ -1,23 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import moment from "moment";
 import InvCompanyInSlot from "./inv-company-in-slot.component";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 const CompanySlotsInDate = ({
     date,
     company,
     slots,
-    datesWidth,
-    adjustDateWidth,
-    openInvestorsModal
+    // openInvestorsModal
 }) => {
-    useEffect(() => {
-        console.log("in CompanySlotsInDate");
-        const newDateWidth = slots.length;
-        if (!datesWidth[date] || newDateWidth > datesWidth[date]) {
-            adjustDateWidth(date, newDateWidth);
-        }
-    }, []);
+    console.log("render CompanySlotsInDate");
 
     return (
         <td className="table-data">
@@ -92,18 +84,13 @@ const CompanySlotsInDate = ({
     );
 };
 
-const mapStateToProps = state => ({
-    datesWidth: state.scheduleReducer.datesWidth
-});
+// const mapDispatchToProps = dispatch => ({
+    // openInvestorsModal: startingData =>
+    //     dispatch({
+    //         type: "SET_INVESTORS_MODAL_STARTING_DATA",
+    //         payload: startingData
+    //     })
+// });
 
-const mapDispatchToProps = dispatch => ({
-    adjustDateWidth: (date, newWidth) =>
-        dispatch({ type: "SET_DATE_WIDTH", payload: { date, newWidth } }),
-    openInvestorsModal: startingData =>
-        dispatch({
-            type: "SET_INVESTORS_MODAL_STARTING_DATA",
-            payload: startingData
-        })
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CompanySlotsInDate);
+// export default connect(mapStateToProps, mapDispatchToProps)(CompanySlotsInDate);
+export default CompanySlotsInDate;

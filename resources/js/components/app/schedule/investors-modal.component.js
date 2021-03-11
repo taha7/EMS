@@ -1,12 +1,13 @@
 import Axios from "axios";
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { connect } from "react-redux";
 import Select2 from "react-select2-wrapper";
-import 'react-select2-wrapper/css/select2.css';
+import "react-select2-wrapper/css/select2.css";
+// import { toJS } from "../../../lib/to-js";
 
 const options = ["chocolate", "strawberry", "vanilla"];
 
-const InvestorsModal = ({ loadInvestors, investorsModal }) => {
+const InvestorsModal = memo(({ loadInvestors, investorsModal }) => {
     useEffect(() => {
         /**
          * only load investors when slot is opened
@@ -29,7 +30,11 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
             aria-labelledby="investorsModalLabel"
             aria-hidden="true"
         >
-            <div className="modal-dialog" role="document" style={{ maxWidth: '1400px' }}>
+            <div
+                className="modal-dialog"
+                role="document"
+                style={{ maxWidth: "1400px" }}
+            >
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="investorsModalLabel">
@@ -63,7 +68,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -72,7 +77,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -81,7 +86,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -90,7 +95,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -99,7 +104,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -108,7 +113,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -117,7 +122,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -126,7 +131,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -135,7 +140,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -144,7 +149,7 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
                                     <th scope="col">
                                         <div className="filter-column">
                                             <Select2
-                                                className='form-control'
+                                                className="form-control"
                                                 multiple
                                                 data={options}
                                             />
@@ -194,10 +199,10 @@ const InvestorsModal = ({ loadInvestors, investorsModal }) => {
             </div>
         </div>
     );
-};
+});
 
-const mapStateToProps = ({ scheduleReducer }) => ({
-    investorsModal: scheduleReducer.investorsModal
+const mapStateToProps = ({ investorsReducer }) => ({
+    investorsModal: investorsReducer
 });
 
 const mapDispatchToProps = dispatch => {
